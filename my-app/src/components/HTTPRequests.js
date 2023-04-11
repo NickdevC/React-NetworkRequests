@@ -19,10 +19,24 @@ export class HTTPRequests extends Component {
         })
     }
     render() {
+        const posts = this.state.posts;
         return (
             <div>
                 <h2>Posts:</h2>
-                {JSON.stringify(this.state.posts)}
+                {
+                    posts.length ? (
+                        posts.map(post => (
+                            <div key={post.id}>
+                                <h2>{post.id}. {post.title}</h2>
+                                <h4>By User ID {post.userId}</h4>
+                                <p>{post.body}</p>
+                                <hr />
+                            </div>
+                        ))
+                    ) : (
+                        <h4>Loading posts...</h4>
+                    )
+                }
             </div>
         )
     }
